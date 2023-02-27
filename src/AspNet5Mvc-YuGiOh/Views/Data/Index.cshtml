@@ -12,9 +12,37 @@
     <title>Index</title>
 </head>
 <body>
+
     <p>
-        <a asp-action="Create">Create New</a>
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Filtrar Cartas
+        </a>
     </p>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body"> 
+            <div class="row">
+                <div class="col-md-5">
+
+                        <label>Selecione Tipo</label>
+                        <div class="d-block">
+                            <select class="form-control" name="tipos" id="tipos">
+                                <option value="1">Monster Normal</option>
+                                <option value="2">Monster effeitos</option>
+                                <option value="3">Carta magica</option>
+                                <option value="4">Carta armadilha</option>
+                            </select>
+                        </div>
+   
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-success btn-destaque"><i class="bx bx-search"></i><span class="align-middle"> Buscar</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+  <hr />
     <table class="table">
         <thead>
             <tr>
@@ -45,7 +73,6 @@
                 <th>
                     @Html.DisplayNameFor(model => model.attribute)
                 </th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -78,11 +105,6 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.attribute)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
                     </td>
                 </tr>
             }

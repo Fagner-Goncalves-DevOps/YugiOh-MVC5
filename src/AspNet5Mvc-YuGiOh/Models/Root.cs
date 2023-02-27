@@ -1,4 +1,4 @@
-﻿using AspNet5Mvc_YuGiOh.Dto;
+﻿
 using System.Collections.Generic;
 
 namespace AspNet5Mvc_YuGiOh.Models
