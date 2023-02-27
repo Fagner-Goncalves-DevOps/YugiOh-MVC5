@@ -8,8 +8,4 @@
         public string amazon_price { get; set; }
         public string coolstuffinc_price { get; set; }
     }
-
-
-
-
 }

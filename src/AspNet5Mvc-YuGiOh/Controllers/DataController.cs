@@ -13,10 +13,13 @@ namespace AspNet5Mvc_YuGiOh.Controllers
 {
     public class DataController : Controller
     {
+
         //APIS PARA TESTE 
         //private readonly string ApiUrl = "https://db.ygoprodeck.com/api/v7/cardinfo.php";
-          private readonly string ApiUrl = "https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Tornado%20Dragon";
-        //private readonly string ApiUrl = "https://db.ygoprodeck.com/api/v7/cardinfo.php?type=Normal%20Monster";
+        //private readonly string ApiUrl = "https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Tornado%20Dragon";
+        private readonly string ApiUrl = "https://db.ygoprodeck.com/api/v7/cardinfo.php?type=Normal%20Monster";
+
+
         public async Task<IActionResult> Index()
         {
             List<DataDtos> ListaTotal = new List<DataDtos>();
@@ -26,24 +29,12 @@ namespace AspNet5Mvc_YuGiOh.Controllers
                 using (var response = await httpClient.GetAsync(ApiUrl))
                 {
                     var ApiResponse = await response.Content.ReadAsStringAsync();
-                    var teste = ApiResponse; //RESPONDE OK
-                    ListaTotal = JsonSerializer.Deserialize<List<DataDtos>>(ApiResponse);
+                    ListaTotal = JsonSerializer.Deserialize<Root>(ApiResponse).data; //não precisa passar um listagem, EF ja fez isso
 
-                    //precisa passsar cada valor se mapear o que precisa ser feito.
-                    //System.Text.Json.JsonSerializerOptions
-                    //ListaTotal = JsonSerializer.Deserialize<List<DataDtos>>(ApiResponse); //padrão novo de convert 2022
+                    //var dados = (from a in ListaTotal select new { a.id, a.name, a.type}).ToList();
                 }
             }
-
-            return View(ListaTotal);
-        }
-        protected async Task<T> DeserializarObjetoResponse<T>(HttpResponseMessage ApiResponse)
-        {
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true,
-            };
-            return JsonSerializer.Deserialize<T>(await ApiResponse.Content.ReadAsStringAsync(), options);
+            return View(ListaTotal.Take(10)); //pegando 10 apenas para testar
         }
     }
 }

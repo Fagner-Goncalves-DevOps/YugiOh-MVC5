@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\AspNet5Mvc-YuGiOh.props" />
+</Project>
