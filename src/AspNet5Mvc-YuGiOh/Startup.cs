@@ -1,12 +1,9 @@
+using AspNet5Mvc_YuGiOh.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AspNet5Mvc_YuGiOh
 {
@@ -22,6 +19,7 @@ namespace AspNet5Mvc_YuGiOh
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.RegisterServices(Configuration);  //necessario registrar injection of dependency
             services.AddControllersWithViews();
         }
 
