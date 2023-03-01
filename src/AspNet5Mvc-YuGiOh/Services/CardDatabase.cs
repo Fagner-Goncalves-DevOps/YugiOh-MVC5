@@ -5,25 +5,29 @@ using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
-using System.Threading.Tasks;
+using System.Threading.
+    Tasks;
 
 namespace AspNet5Mvc_YuGiOh.Services
 {
     public class CardDatabase : ICardDatabase
     {
-        //implementar injection dependetion remover os using
         private readonly string ApiUrlAllCards = "https://db.ygoprodeck.com/api/v7/cardinfo.php";
 
-        public async Task<List<DataDtos>> GetAllCads()
+        public async Task<List<DataDtos>> GetAllCadsByParams(FilterParams filterParams) 
         {
-            var types = "Normal Monster";// apenas para testar
+            //testar depois se vamos retornar tudo ou não
+            var types = filterParams.type == null ? "Normal Monster" : filterParams.type;
+            var races = filterParams.race == null ? "Aqua" : filterParams.race;
+            var attributes = filterParams.attribute == null ? "DARK" : filterParams.attribute;
 
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync(ApiUrlAllCards + "?type=" + types)) //apenas para testar
+                using (var response = await httpClient.GetAsync(ApiUrlAllCards + "?type=" + types + "&race=" + races + "&attribute=" + attributes ))  //+ types + races + attributes //implentar $()
                 {
                     var ApiResponse = await response.Content.ReadAsStringAsync();
                     var options = new JsonSerializerOptions
@@ -33,26 +37,9 @@ namespace AspNet5Mvc_YuGiOh.Services
                     return JsonSerializer.Deserialize<Root>(ApiResponse, options).data;
                 }
             }
-         }
-
-        public async Task<DataDtos> GetCardsByType(string type)
-        {
-            var types = type == null ? "Normal Monster" : type;
-
-            using (var httpClient = new HttpClient()) 
-            {
-                using (var response = await httpClient.GetAsync(ApiUrlAllCards + "?type=" + types)) 
-                {
-                    var ApiResponse = await response.Content.ReadAsStringAsync();
-                    var options = new JsonSerializerOptions
-                    {
-                        PropertyNameCaseInsensitive = true
-                    };
-                    return JsonSerializer.Deserialize<DataDtos>(ApiResponse, options);
-                } 
-            }
         }
-
-
     }
 }
+
+//modelo de retorno
+//?&type= Normal%20Monster &attribute=DARK &race=Aqua &num=24 &offset=0
