@@ -4,46 +4,132 @@
     Layout = "_Layout";
 }
 
-<!DOCTYPE html>
-
 <html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
 <body>
-
     <p>
         <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-            Filtrar Cartas
+            Select Card 
         </a>
     </p>
-    <div class="collapse" id="collapseExample">
+    <div class="p-3 border rounded bg-light collapse" id="collapseExample">
         <div class="card card-body"> 
             <div class="row">
-                <div class="col-md-5">
-
-                        <label>Selecione Tipo</label>
-                        <div class="d-block">
+                <div class="col-md-2">
+@*                        <label>Selecione Tipo</label>
+*@                        <div class="d-block">
                             <select class="form-control" name="tipos" id="tipos">
-                                <option value="1">Monster Normal</option>
-                                <option value="2">Monster effeitos</option>
-                                <option value="3">Carta magica</option>
-                                <option value="4">Carta armadilha</option>
+                            <option value="0">Select Type</option>
+                            <option value="1">Effect Monster</option>
+                            <option value="2">Flip Effect Monster</option>
+                            <option value="3">Flip Tuner Effect Monster</option>
+                            <option value="4">Gemini Monster</option>
+                            <option value="5">Normal Monster</option>
+                            <option value="6">Normal Tuner Monster</option>
+                            <option value="7">Pendulum Effect Monster</option>
+                            <option value="8">Pendulum Effect Ritual Monster</option>
+                            <option value="9">Pendulum Flip Effect Monster</option>
+                            <option value="10">Pendulum Normal Monster</option>
+                            <option value="11">Pendulum Tuner Effect Monster</option>
+                            <option value="12">Pendulum Effect Fusion Monster</option>
+                            <option value="13">Ritual Effect Monster</option>
+                            <option value="14">Ritual Monster</option>
+                            <option value="15">Spell Card</option>
+                            <option value="16">Spirit Monster</option>
+                            <option value="17">Toon Monster</option>
+                            <option value="18">Trap Card</option>
+                            <option value="19">Tuner Monster</option>
+                            <option value="20">Union Effect Monster</option>
+                            <option value="21">Fusion Monster</option>
+                            <option value="22">Link Monster</option>
+                            <option value="23">Synchro Monster</option>
+                            <option value="24">Synchro Pendulum Effect Monster</option>
+                            <option value="25">Synchro Tuner Monster</option>
+                            <option value="26">XYZ Monster</option>
+                            <option value="27">XYZ Pendulum Effect Monster</option>
+                            <option value="28">Skill Card</option>
+                            <option value="29">Token</option>
                             </select>
                         </div>
-   
+                </div>
+                <div class="col-md-2">
+                        <div class="d-block">
+                        <select class="form-control" name="Atributo" id="Atributo">
+                            <option value="0" >Select Attribute</option>
+                            <option value="1" >DARK</option>
+                            <option value="2" >DIVINE</option>
+                            <option value="3" >EARTH</option>
+                            <option value="4" >FIRE</option>
+                            <option value="5" >LIGHT</option>
+                            <option value="6" >WATER</option>
+                            <option value="7" >WIND</option>
+                            </select>
+                        </div>
+                </div>
+                <div class="col-md-2">
+                        <div class="d-block">
+                        <select class="form-control" name="Raca" id="Raca">
+                            <option value="0" >Select Race</option>
+                            <option value="1" >Aqua</option>
+                            <option value="2" >Beast</option>
+                            <option value="3" >Beast-Warrior</option>
+                            <option value="4" >Celestial War</option>
+                            <option value="5" >Continuous</option>
+                            <option value="6" >Counter</option>
+                            <option value="7" >Creator-God</option>
+                            <option value="8" >Cyberse</option>
+                            <option value="9" >Cyborg</option>
+                            <option value="10" >Dinosaur</option>
+                            <option value="11" >Divine-Beast</option>
+                            <option value="12" >Dragon</option>
+                            <option value="13" >Equip</option>
+                            <option value="14" >Fairy</option>
+                            <option value="15" >Field</option>
+                            <option value="16" >Fiend</option>
+                            <option value="17" >Fish</option>
+                            <option value="18" >High Dragon</option>
+                            <option value="19" >Insect</option>
+                            <option value="20" >Machine</option>
+                            <option value="21" >Magical Knigh</option>
+                            <option value="22" >Normal</option>
+                            <option value="23" >Omega Psychic</option>
+                            <option value="24" >Plant</option>
+                            <option value="25" >Psychic</option>
+                            <option value="26" >Pyro</option>
+                            <option value="27" >Quick-Play</option>
+                            <option value="28" >Reptile</option>
+                            <option value="29" >Ritual</option>
+                            <option value="30" >Rock</option>
+                            <option value="31" >Sea Serpent</option>
+                            <option value="32" >Spellcaster</option>
+                            <option value="33" >Thunder</option>
+                            <option value="34" >Warrior</option>
+                            <option value="35" >Winged Beast</option>
+                            <option value="36" >Wyrm</option>
+                            <option value="37" >Zombie</option>
+                            </select>
+                        </div>
                 </div>
             </div>
+            <br />
             <div class="row">
-                <div class="col-12 d-flex justify-content-end">
-                    <button type="submit" class="btn btn-success btn-destaque"><i class="bx bx-search"></i><span class="align-middle"> Buscar</span></button>
+                <div class="form-group">
+                            <input type="range" min="0" max="12" value="0" class="slider" id="cardlevel">
+                    <div class="col-md-0 offset-md-0">
+                        <input type="number" min="0" max="12" value="0" class="slider" id="levelLabel">
+                        <label for="cardlevel">Level</label>
+                    </div>  
+                </div>
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-end">
+                        <button type="reset" class="btn btn-primary"><i class="bx bx-search"></i><span class="align-left"> Reset Filters </span></button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-  <hr />
-    <table class="table">
+    <br />
+<div class="p-3 border rounded bg-light card card-body">
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th>
@@ -110,5 +196,6 @@
             }
         </tbody>
     </table>
+</div>
 </body>
 </html>
