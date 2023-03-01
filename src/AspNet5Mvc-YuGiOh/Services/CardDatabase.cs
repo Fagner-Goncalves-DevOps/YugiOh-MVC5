@@ -9,8 +9,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
-using System.Threading.
-    Tasks;
+using System.Threading.Tasks;
 
 namespace AspNet5Mvc_YuGiOh.Services
 {
@@ -22,7 +21,7 @@ namespace AspNet5Mvc_YuGiOh.Services
         {
             //testar depois se vamos retornar tudo ou não
             var types = filterParams.type == null ? "Normal Monster" : filterParams.type;
-            var races = filterParams.race == null ? "Aqua" : filterParams.race;
+            var races = filterParams.race == null ? "Spellcaster" : filterParams.race;
             var attributes = filterParams.attribute == null ? "DARK" : filterParams.attribute;
 
             using (var httpClient = new HttpClient())
